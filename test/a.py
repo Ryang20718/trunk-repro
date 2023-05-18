@@ -15,6 +15,7 @@ print(os.getenv("GG"))
 print("hello")
 print("hello")
 print("hello")
+k: str = 3
 print("hello")
 print("hello")
 print(os.getenv("GG"))
