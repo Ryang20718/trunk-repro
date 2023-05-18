@@ -1,3 +1,3 @@
-from a import kk
+from a import test_fun
 
-kk()
+test_fun()
