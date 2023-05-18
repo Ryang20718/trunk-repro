@@ -24,7 +24,7 @@ a += "geg"
 a += [3]
 print(a)
 a += [3]
-print("hello")
+print("hello")  # type: ignore
 k: str = 5
 
 def add(a: int, b: int, c: int):
