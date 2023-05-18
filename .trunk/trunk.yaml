@@ -1,29 +1,77 @@
-version: 0.1
-cli:
-  version: 1.9.1
+# docs: https://docs.trunk.io/check/config
+# reference config: tools/trunk print-config
+runtimes:
+  enabled:
+    - go@1.20.3
+    - node@16.14.2
+    - python@3.10.3
 plugins:
   sources:
     - id: trunk
-      ref: v0.0.17
+      ref: v0.0.11
       uri: https://github.com/trunk-io/plugins
-lint:
-  enabled:
-    - black@23.3.0
-    - git-diff-check
-    - gitleaks@8.16.3
-    - isort@5.12.0
-    - prettier@2.8.8
-    - ruff@0.0.265
-    - yamllint@1.31.0
-runtimes:
-  enabled:
-    - go@1.19.5
-    - node@18.12.1
-    - python@3.10.8
 actions:
   disabled:
+    - git-lfs
     - trunk-announce
     - trunk-check-pre-push
     - trunk-fmt-pre-commit
   enabled:
+    - trunk-cache-prune
     - trunk-upgrade-available
+version: 0.1
+cli:
+  version: 1.6.1
+  sha256:
+    darwin_x86_64: 11561451eab6b792a6395cb98a41f2366eca4ca0bfd05a6b267e959495071628
+    linux_x86_64: ce29a36c7c69b25b5b0e572fe30ccc179b03e0d89d8207260fa95c671fcade00
+lint:
+  enabled: # After upgrading linters, please test out performance on vscode for autocomplete
+    - git-diff-check
+    - black@22.10.0
+    - markdownlint@0.33.0
+    - clang-format@14.0.0
+    - clang-tidy@15.0.6
+    - isort@5.12.0
+    - flake8@6.0.0:
+        packages:
+          - flake8-copyright@0.2.4
+          - flake8-docstrings@1.7.0
+          - flake8-bugbear@23.2.13
+    - buildifier@6.0.1
+    - gitleaks@8.16.0
+    - gofmt@1.20.3 # try to keep in check with go version
+    - golangci-lint@1.52.1
+    - hadolint@2.12.0
+    - mypy@SYSTEM
+    - prettier@2.8.4
+    - pylint@SYSTEM
+    - shfmt@3.5.0
+    - rustfmt@1.65.0
+    - shellcheck@0.9.0
+    - taplo@0.7.0
+  ignore:
+    - linters: [ALL]
+      paths:
+        - ".venv/**"
+  environments:
+  linters:
+    - name: mypy
+      commands:
+        - output: mypy
+          success_codes: [0, 1]
+          name: lint
+          batch: true
+          run: mypy ${target}
+          stdin: false
+      is_manual: true
+    - name: pylint
+      commands:
+        - output: pylint
+          success_codes: [0]
+          batch: true
+          cache_results: true
+          name: lint
+          read_output_from: tmp_file
+          run: pylint --exit-zero --output ${tmpfile} --output-format=json --jobs=1 --disable=C0115 ${target}
+      is_manual: true
