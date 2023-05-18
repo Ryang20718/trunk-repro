@@ -16,14 +16,15 @@ print("hello")
 print("hello")
 print("hello")
 print("hello")
-k: str = 3
+print("hello")
 print(os.getenv("GG"))
 
-def kk() ->int:
+
+def test_fun() -> int:
     """
     _summary_.
 
     Returns:
         int: _description_
     """
-    return "gg"
+    return 3
