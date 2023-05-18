@@ -18,6 +18,7 @@ print("hello")
 print("hello")
 print("hello")
 print(os.getenv("GG"))
+k: str = 3
 
 
 def test_fun() -> int:
