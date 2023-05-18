@@ -25,6 +25,21 @@ a += [3]
 print(a)
 a += [3]
 print("hello")
+k: str = 5
+
+def add(a: int, b: int, c: int):
+    """
+    _summary_.
+
+    Args:
+        a (int): _description_
+        b (int): _description_
+        c (int): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    return a + b + c  # type: ignore
 
 
 def test_fun() -> int:
