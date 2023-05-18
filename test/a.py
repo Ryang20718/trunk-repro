@@ -23,6 +23,7 @@ a: List[str] = []
 a += "geg"
 a += [3]
 print(a)
+a += [3]
 print("hello")
 
 
