@@ -61,8 +61,8 @@ lint:
         - output: mypy
           success_codes: [0, 1]
           name: lint
-          batch: true
-          run: mypy ${target}
+          # batch: true
+          run: ${workspace}/.venv/bin/mypy ${target}
           stdin: false
       is_manual: true
     - name: pylint
@@ -73,5 +73,5 @@ lint:
           cache_results: true
           name: lint
           read_output_from: tmp_file
-          run: pylint --exit-zero --output ${tmpfile} --output-format=json --jobs=1 --disable=C0115 ${target}
+          run: ${workspace}/.venv/bin/pylint --exit-zero --output ${tmpfile} --output-format=json --jobs=1 --disable=C0115 ${target}
       is_manual: true
