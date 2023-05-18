@@ -61,7 +61,7 @@ lint:
         - output: mypy
           success_codes: [0, 1]
           name: lint
-          # batch: true
+          batch: true
           run: ${workspace}/.venv/bin/mypy --show-error-codes --show-column-numbers --no-incremental ${target}
           stdin: false
       is_manual: true

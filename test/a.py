@@ -6,6 +6,7 @@ asdasd
 
 """
 import os
+from typing import List
 
 print(os.getenv("GG"))
 print(os.getenv("GG"))
@@ -15,11 +16,14 @@ print(os.getenv("GG"))
 print("hello")
 print("hello")
 print("hello")
-k: str = 3
 print("hello")
 print("hello")
 print(os.getenv("GG"))
-k: str = 3
+a: List[str] = []
+a += "geg"
+a += [3]
+print(a)
+print("hello")
 
 
 def test_fun() -> int:
